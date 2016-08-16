@@ -14,6 +14,7 @@ def parseandbuild(countrylist):
 	nodedict={}
 	print("parsing wikipedia and building tree........")
 	Dgraph.add_nodes_from(countrylist)
+	fappend=False
 	for c in countrylist:
 		count=0;
 		nodedict[c]=[]
@@ -31,7 +32,8 @@ def parseandbuild(countrylist):
 				print("valerror")
 				continue
 	
-
+		storecontent(country,fappend)
+		fappend=True
 		clinks=country.links
 		for j in countrylist:
 			if(j==c):
@@ -43,6 +45,15 @@ def parseandbuild(countrylist):
 				count=count+1							
 	
 		Dgraph.add_edges_from(edges)
+
+def storecontent(c,fappend):
+	if not fappend:
+		f=open("content.txt","w")
+	else:
+		f=open("content.txt","a")
+	f.write(c.content.encode('utf-8')+'\n')
+	f.write("@@@@@@@@@@@@@@@@@@@@@")
+	f.close()
 		
 def plotfig():		
 	print("Rendering tree")
@@ -60,11 +71,14 @@ def plotfig():
 
 def main():
 	itemlist=[]
-	with open("countrylist.txt",'r') as f:
-		for line in f:
-			for nword in line.split(","):
-		        	itemlist.append(nword.lstrip());	
-	
+	try:
+		with open("countrylist.txt",'r') as f:
+			for line in f:
+				for nword in line.split(","):
+		        		itemlist.append(nword.lstrip());	
+	except OSError:
+		print("file not found")
+
 	lenlist=len(itemlist);
 	print "number of wikipages that can be ranked: ",lenlist
 	print("\n")

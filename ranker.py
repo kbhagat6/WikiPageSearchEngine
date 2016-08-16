@@ -2,6 +2,7 @@ import cPickle as pickle
 import networkx as nx
 import matplotlib.pyplot as plt
 from numpy import zeros,matrix, random, sum,arange, ones, dot,shape,allclose
+from scipy import linalg as LA
 from array import array
 import math
 
@@ -26,7 +27,7 @@ def rankpages(Dgraph):
 		S[i,:]=S[i,:]/sum(S[i,:])
 
 	G=S*d+E*(1-d)  #Stochastic Matrix
-
+	ploteigenvals(G);
 	prob=random.random(fnlength)
 	smprob=sum(prob)
 	prob=(prob/smprob)   #random surfer model constraint
@@ -48,6 +49,8 @@ def rankpages(Dgraph):
 	#print(ev[18][5])`
 	return ev
 
+def ploteigenvals(G):
+	print(LA.eig(G))
 def plotfig(ev,fnlength):
 	plt.figure()
 	for i in xrange(fnlength):
