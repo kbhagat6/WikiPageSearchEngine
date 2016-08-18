@@ -24,4 +24,4 @@ filtered_lis = [li for li in lis if not 'tocsection' in ''.join(li.get('class', 
 may_refer_to = [li.a.get_text() for li in filtered_lis if li.a]
 raise DisambiguationError(getattr(self, 'title', page['title']), may_refer_to)
 ```
- The 3rd line on the code above, or (line 389 on wikipedia.py) should match your html parser if you receive warnings to explicitly declare your parser.
+ The 3rd line on the code above, or (line 389 on wikipedia.py in your dependency folder(linux:/usr/local/lib/python2.7/dist-packages/wikipedia) should match your html parser if you receive warnings to explicitly declare your parser.
