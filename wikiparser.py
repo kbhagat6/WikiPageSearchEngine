@@ -12,9 +12,9 @@ Dgraph=nx.DiGraph()
 def parseandbuild(countrylist):
 	edges=[]
 	nodedict={}
+	pagedict={}
 	print("parsing wikipedia and building tree........")
 	Dgraph.add_nodes_from(countrylist)
-	fappend=False
 	for c in countrylist:
 		count=0;
 		nodedict[c]=[]
@@ -32,8 +32,7 @@ def parseandbuild(countrylist):
 				print("valerror")
 				continue
 	
-		storecontent(country,fappend)
-		fappend=True
+	        pagedict[c]=country.content
 		clinks=country.links
 		for j in countrylist:
 			if(j==c):
@@ -45,15 +44,8 @@ def parseandbuild(countrylist):
 				count=count+1							
 	
 		Dgraph.add_edges_from(edges)
-
-def storecontent(c,fappend):
-	if not fappend:
-		f=open("content.txt","w")
-	else:
-		f=open("content.txt","a")
-	f.write(c.content.encode('utf-8')+'\n')
-	f.write("@@@@@@@@@@@@@@@@@@@@@")
-	f.close()
+	with open('pages.pk1','wb') as f:
+		pickle.dump(pagedict,f)
 		
 def plotfig():		
 	print("Rendering tree")
