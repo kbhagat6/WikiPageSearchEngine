@@ -22,7 +22,7 @@ def processmatrix(Dgraph):
 		for nbr,eattr in nbrsdict.items():
 			S[edict[n],edict[nbr]]=eattr['weight']
 	#print(S)
-	d=0.85i #damping factor
+	d=0.85 #damping factor
 	E=ones(S.shape)/fnlength
 	S=d*S+E*(1-d)   #stochastic matrix
 	G=matrix(zeros(S.shape))
@@ -43,7 +43,7 @@ def processmatrix(Dgraph):
 		#s=[map(float,line.strip()) for line in R]
 		for t in range(R.shape[1]):
 			rlist.append(R.item(t))
-		if(i>0)
+		if(i>0):
 			if(allclose(rlist,tmplist)):
 				conviter=i;
 				break;
