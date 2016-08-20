@@ -12,8 +12,20 @@ pip install networkx
 
 Ensure internet connection and run the wikiparser.py. 
 The wikiparser.py parses and searches wikipedia for all the words in the text file(use case: country). For each search it grabs the content and all the links to other wikipedia pages(which happen to be linking to other pages). It then builds a directed graph(assumption was that pages don't necessarily have to link back to each other) and stores it. 
+```
+python wikiparser.py countrylist.txt
+```
 
-The rank.py parses the directed graph with a dictionary of all of the nodes and links. It then builds the stochastic matrix(markov chain) by applying the random surfer model constraint, adding a random perturbation matrix to satisfy <a href=https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem#Positive_matrices>Perron-Frobenius Theorem</a>, and then finds the iteration of algorithm convergence. The perturbing matrix takes into accnt that page can be accessed by some other means so it allows the math to satisfy the eigenvalue properties specified in the theorem.  In a broader sense, the eigenvalues of the stochastic matrix could be for things like spam detection b/c it's often one of things spammers change based on linkage patterns to deliberately adjust rank.
+![](https://raw.githubusercontent.com/kbhagat6/WikiPageSearchEngine/master/Directed_Graph.png)
+<a
+
+The rank.py parses the directed graph with a dictionary of all of the nodes and links. It then builds the stochastic matrix(markov chain) by applying the random surfer model constraint, adding a random perturbation matrix to satisfy <a href=https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem#Positive_matrices>Perron-Frobenius Theorem</a>, and then finds the iteration of algorithm convergence.
+
+```
+python ranker.py
+```
+![](https://raw.githubusercontent.com/kbhagat6/WikiPageSearchEngine/master/rank.png)
+The perturbing matrix takes into accnt that page can be accessed by some other means so it allows the math to satisfy the eigenvalue properties specified in the theorem.  In a broader sense, the eigenvalues of the stochastic matrix could be for things like spam detection b/c it's often one of things spammers change based on linkage patterns to deliberately adjust rank.
 Lastly, the code then displays a graph of all pages ranks and how it converged after each iteration, then you can search for a word in any of the "trained" wiki pages, then returns a sorted list based on ranking I applied previously.
 
 ```python
