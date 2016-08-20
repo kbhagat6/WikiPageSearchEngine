@@ -25,6 +25,7 @@ The rank.py parses the directed graph with a dictionary of all of the nodes and 
 python ranker.py
 ```
 ![](https://raw.githubusercontent.com/kbhagat6/WikiPageSearchEngine/master/rank.png)
+
 The perturbing matrix takes into accnt that page can be accessed by some other means so it allows the math to satisfy the eigenvalue properties specified in the theorem.  In a broader sense, the eigenvalues of the stochastic matrix could be for things like spam detection b/c it's often one of things spammers change based on linkage patterns to deliberately adjust rank.
 Lastly, the code then displays a graph of all pages ranks and how it converged after each iteration, then you can search for a word in any of the "trained" wiki pages, then returns a sorted list based on ranking I applied previously.
 
