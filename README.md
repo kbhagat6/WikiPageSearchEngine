@@ -17,7 +17,7 @@ python wikiparser.py countrylist.txt
 ```
 
 ![](https://raw.githubusercontent.com/kbhagat6/WikiPageSearchEngine/master/Directed_Graph.png)
-<a
+
 
 The rank.py parses the directed graph with a dictionary of all of the nodes and links. It then builds the stochastic matrix(markov chain) by applying the random surfer model constraint, adding a random perturbation matrix to satisfy <a href=https://en.wikipedia.org/wiki/Perron%E2%80%93Frobenius_theorem#Positive_matrices>Perron-Frobenius Theorem</a>, and then finds the iteration of algorithm convergence.
 
