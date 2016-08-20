@@ -22,7 +22,7 @@ def processmatrix(Dgraph):
 		for nbr,eattr in nbrsdict.items():
 			S[edict[n],edict[nbr]]=eattr['weight']
 	#print(S)
-	d=0.85
+	d=0.85i #damping factor
 	E=ones(S.shape)/fnlength
 	S=d*S+E*(1-d)   #stochastic matrix
 	G=matrix(zeros(S.shape))
@@ -30,27 +30,20 @@ def processmatrix(Dgraph):
 		if(sum(S[i,:]!=0)):
 			G[i,:]=S[i,:]/sum(S[i,:])
         
-	ploteigenvals(G);
-	#print(G)
+	ploteigenvals(G); #we can check the eivenvalues of G as it coverges
 	prob=random.random(fnlength)
 	smprob=sum(prob)
 	prob=(prob/smprob)   #random surfer model constraint
 	R=prob
 	conviter=0
 	tmplist=[]
-	#print(R)
-	#print(G)
 	for i in range(50):	#find iteration of convergence
 		R=dot(R,G)
 		rlist=[]
 		#s=[map(float,line.strip()) for line in R]
 		for t in range(R.shape[1]):
 			rlist.append(R.item(t))
-		if(i>0):
-		#	print(rlist)
-		#	print(tmplist)
-		#	print(allclose(rlist,tmplist))
-		#	print(i)
+		if(i>0)
 			if(allclose(rlist,tmplist)):
 				conviter=i;
 				break;
